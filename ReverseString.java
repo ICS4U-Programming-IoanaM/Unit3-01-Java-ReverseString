@@ -25,12 +25,12 @@ public final class ReverseString {
    * @param fileArrayStr Array of strings representing integers.
    * @return String representation of the sum.
    */
-  public static String reverseString(final String input, String output, final int n) {
+  public static String revString(final String str, String output, final int n) {
     if (n < 0) {
       return output;
     } else {
-      output += input.charAt(n);
-      return reverseString(input, output, n - 1);
+      output += str.charAt(n);
+      return revString(str, output, n - 1);
     }
   }
 
@@ -42,12 +42,14 @@ public final class ReverseString {
   public static void main(final String[] args) {
     try {
       // File paths
-      File inFile = new File("Unit3/Unit3-01/Unit3-01-Java-ReverseString/input.txt");
-      File outFile = new File("Unit3/Unit3-01/Unit3-01-Java-ReverseString/output.txt");
+      String in = "Unit3/Unit3-01/Unit3-01-Java-ReverseString/input.txt";
+      String out = "Unit3/Unit3-01/Unit3-01-Java-ReverseString/output.txt";
+      File inputFile = new File(in);
+      File outputFile = new File(out);
 
       // Initializing scanner and writer
-      Scanner scanner = new Scanner(inFile);
-      FileWriter writer = new FileWriter(outFile);
+      Scanner scanner = new Scanner(inputFile);
+      FileWriter writer = new FileWriter(outputFile);
 
       // variables
       String fileLine;
@@ -58,11 +60,10 @@ public final class ReverseString {
         fileLine = scanner.nextLine();
 
         // call the recursive function
-        String result = reverseString(fileLine, "", fileLine.length() - 1);
+        String result = revString(fileLine, "", fileLine.length() - 1);
 
         // write to file
         writer.write(result + "\n");
-        
       }
       // message to console confirming the process finished with no errors
       System.out.println("Successfully completed task!");
